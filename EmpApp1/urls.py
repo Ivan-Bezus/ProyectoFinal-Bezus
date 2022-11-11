@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import inicio, inquilino, ganancias
+from EmpApp1.views import inicio, depto, inquilino, ganancias
 
 urlpatterns = [
     path('', inicio,),
-    path('inquilino/', inquilino,),
-    path('ganancias/', ganancias,),
+    path('depto/', depto, name="depto"),
+    path('inquilino/', inquilino, name="inquilino"),
+    path('ganancias/', ganancias, name="ganancias"),
     
 ]

@@ -4,13 +4,16 @@ from django.http import HttpResponse
 # Create your views here.
 
 def inicio (request):
-   return HttpResponse (f'Página de inicio')
-
+   return render(request, "inicio.html") 
+   
+def depto (request):
+    return render(request, "depto.html") 
 
 def inquilino (request):
-    return HttpResponse (f'Página de inquilino')
-    
+    return render(request, "inquilino.html") 
 
+    
 def ganancias (request):
-    return HttpResponse (f'Página de ganancias')
+    return render(request, "ganancias.html") 
+    
    
