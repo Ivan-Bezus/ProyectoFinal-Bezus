@@ -56,10 +56,10 @@ def registro_inquilino (request):
 def formulario_ganancia (request):
 
     if request.method == 'POST':
-        ing_ganancia = Ganancia(precio_x_dia=request.POST['precia_x_dia'], costo_gestion=request.POST['costo_gestion'], costo_mant =request.POST['costo_mant'], costo_limpieza=request.POST['costo_limpieza'], ganancia =request.POST['ganancia'] )
+        ing_ganancia = Ganancia(precio_x_dia=request.POST['precio_x_dia'], costo_gestion=request.POST['costo_gestion'], costo_mant =request.POST['costo_mant'], costo_limpieza=request.POST['costo_limpieza'], ganancia =request.POST['ganancia'] )
         ing_ganancia.save()
         
-        return redirect ('inquilino')
+        return redirect ('ganancias')
     else:
 
         return render (request, "formulario_ganancias.html") 
