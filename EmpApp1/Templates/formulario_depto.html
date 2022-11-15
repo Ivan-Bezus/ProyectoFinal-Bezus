@@ -1,0 +1,21 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+    <h1> Cargar Formulario Departamento</h1>
+    
+    <form action="{% url 'formulario_depto' %}" method="POST">{% csrf_token %}
+        
+        <p> Precio diario: <input type="text" name = "cobro_x_día"></p>
+        <p> Fecha de entrada: <input type="text" name= "fecha_entrada"></p> 
+        <p> Fecha de salida: <input type="text" name= "fecha_salida"></p>
+
+
+        <input type="submit" value="Enviar"/>
+    </form>
+    
+{% endblock ContenidoQueCambia %}
+    

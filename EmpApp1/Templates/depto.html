@@ -5,7 +5,16 @@
 
 {% block ContenidoQueCambia %}
 
-    <h1> Vista de depto </h1>
-    <h1> Cargar datos del alquiler del depto </h1>
+<ul>
+    <h1>La lista de reserva del depto es:</h1>
+    FECHA DE ENTRADA - FECHA DE SALIDA - PRECIO DIARIO
+    {% for reserva in reservas %}
+    <li>
+        {{reserva.fecha_entrada}} - {{reserva.fecha_salida}} - {{reserva.cobro_x_día}}
+    </li> 
+    {% endfor %}
+    
+    <a href="{% url 'formulario_depto' %}"> Agregar Reserva </a>
+</ul>
     
 {% endblock ContenidoQueCambia %}

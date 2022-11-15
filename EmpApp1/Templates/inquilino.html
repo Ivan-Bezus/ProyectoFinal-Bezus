@@ -6,6 +6,14 @@
 {% block ContenidoQueCambia %}
 
     <h1> Vista de inquilino </h1>
-    <h1> Cargar datos del inquilino </h1>
+    <h1>NOMBRE - APELLIDO - DNI - TELEFONO - EMAIL </h1>
+    {% for inquilino in inquilinos %} 
+    <li>
+        {{inquilino.nombre}} - {{inquilino.apellido}} - {{inquilino.dni}} - {{inquilino.telefono}} - {{inquilino.email}}
+    </li> 
+    {% endfor %}
+    
+    <a href="{% url 'formulario_inquilino' %}"> Agregar inquilino </a>
+    
     
 {% endblock ContenidoQueCambia %}

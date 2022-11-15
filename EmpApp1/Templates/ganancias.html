@@ -6,6 +6,15 @@
 {% block ContenidoQueCambia %}
 
     <h1> Vista de ganancias </h1>
-    <h1> Cargar datos de la ganancias </h1>
+
+    <h1>La lista de ganancias del depto es:</h1>
+    Precio por dia - costo de gestion - Costo de mantenimiento - Costo de limpieza
+    {% for ganancia in ganancias %} 
+    <li>
+        {{ganancia.precio_x_dia}} - {{ganancia.costo_gestion}} - {{ganancia.costo_mant}} - {{ganancia.costo_mant}} - {{ganancia.costo_limpieza}} - {{ganancia.ganancia}}
+    </li> 
+    {% endfor %}
+    
+    <a href="{% url 'formulario_ganancia' %}"> Cargar Ganancias </a>
     
 {% endblock ContenidoQueCambia %}

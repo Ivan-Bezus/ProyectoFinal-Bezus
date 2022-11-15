@@ -1,0 +1,22 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+    <h1> Cargar Formulario Departamento</h1>
+    
+    <form action="{% url 'formulario_ganancia' %}" method="POST">{% csrf_token %}
+
+        <p> Precio diario: <input type="text" name = "precio_x_día"></p>
+        <p> Costo de Gestion: <input type="text" name= "costo_gestion"></p> 
+        <p> Costo de mantenimiento: <input type="text" name= "costo_mant"></p>
+        <p> Costo de limpieza: <input type="text" name= "costo_limpieza"></p>
+        <p> Ganancias: <input type="text" name= "ganancia"></p>
+
+        
+        <input type="submit" value="Enviar"/>
+    </form>
+    
+{% endblock ContenidoQueCambia %}
