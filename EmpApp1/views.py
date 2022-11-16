@@ -48,6 +48,7 @@ def formulario_inquilino (request):
         return render (request, "formulario_inquilino.html") 
 
 def registro_inquilino (request): 
+
     lista_inquilino = Inquilino.objects.all()
     return render (request, "inquilino.html", {"inquilinos" : lista_inquilino})
 
@@ -56,6 +57,7 @@ def registro_inquilino (request):
 def formulario_ganancia (request):
 
     if request.method == 'POST':
+
         ing_ganancia = Ganancia(precio_x_dia=request.POST['precio_x_dia'], costo_gestion=request.POST['costo_gestion'], costo_mant =request.POST['costo_mant'], costo_limpieza=request.POST['costo_limpieza'], ganancia =request.POST['ganancia'] )
         ing_ganancia.save()
         
@@ -65,5 +67,7 @@ def formulario_ganancia (request):
         return render (request, "formulario_ganancias.html") 
 
 def registro_ganancia (request): 
+
     lista_ganancias = Ganancia.objects.all()
-    return render (request, "ganancias.html", {"ganancia" : lista_ganancias})    
+    
+    return render (request, "ganancias.html", {"ganancias" : lista_ganancias})    

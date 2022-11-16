@@ -20,11 +20,11 @@ class Inquilino (models.Model):
         return f'{self.nombre} - {self.apellido} - {self.dni} - {self.email}'
 
 class Ganancia (models.Model):
-    precio_x_día = models.CharField(max_length=30)
+    precio_x_dia = models.CharField(max_length=30)
     costo_gestion = models.CharField(max_length= 30)
     costo_mant = models.CharField(max_length=30)
     costo_limpieza = models.CharField(max_length=30)
     ganancia = models.CharField(max_length=30)
 
     def __str__(self):
-        return f'{self.precio_x_día} - {self.costo_mant} - {self.costo_limpieza} - {self.ganancia}'
+        return f'{self.precio_x_día} - {self.costo_mant} - {self.costo_mant} - {self.costo_limpieza} - {self.ganancia}'

@@ -11,11 +11,11 @@ urlpatterns = [
     path('formulario_depto/',formulario_depto , name="formulario_depto"),
     path('lista_reserva/', reserva_depto , name="reserva_depto"),
 
-    path('formulario_ganancia/',formulario_ganancia , name="formulario_ganancia"),
-    path('lista_ganancia/',registro_ganancia , name="lista_ganancia"),
+    path('formulario_ganancia/', formulario_ganancia , name="formulario_ganancia"),
+    path('lista_ganancia/', registro_ganancia , name="lista_ganancia"),
 
-    path('formulario_inquilindo/',formulario_inquilino , name="formulario_inquilino"),
-    path('lista_inquilino/',registro_inquilino , name="lista_inquilino"),
+    path('formulario_inquilido/',formulario_inquilino , name="formulario_inquilino"),
+    path('lista_inquilino/', registro_inquilino , name="lista_inquilino"),
 
 
     

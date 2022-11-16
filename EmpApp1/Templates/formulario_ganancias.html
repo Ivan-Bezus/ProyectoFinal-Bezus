@@ -5,11 +5,11 @@
 
 {% block ContenidoQueCambia %}
 
-    <h1> Cargar Formulario Departamento</h1>
+    <h1> Cargar Formulario de ganancias</h1>
     
-    <form action="{% url 'formulario_ganancias' %}" method="POST">{% csrf_token %}
+    <form action="{% url 'formulario_ganancia' %}" method="POST">{% csrf_token %}
 
-        <p> Precio diario: <input type="text" name = "precio_x_día"></p>
+        <p> Precio diario: <input type="text" name = "precio_x_dia"></p>
         <p> Costo de Gestion: <input type="text" name= "costo_gestion"></p> 
         <p> Costo de mantenimiento: <input type="text" name= "costo_mant"></p>
         <p> Costo de limpieza: <input type="text" name= "costo_limpieza"></p>
