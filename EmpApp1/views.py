@@ -22,7 +22,7 @@ def ganancias (request):
 def formulario_depto (request):
 
     if request.method == 'POST':
-        ing_depto = Depto(cobro_x_día=request.POST['cobro_x_día'], fecha_entrada=request.POST['fecha_entrada'], fecha_salida =request.POST['fecha_salida'] )
+        ing_depto = Depto(cobro_x_día=request.POST['cobro_x_dia'], fecha_entrada=request.POST['fecha_entrada'], fecha_salida =request.POST['fecha_salida'] )
         ing_depto.save()
         
         return redirect ('depto')

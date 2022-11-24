@@ -27,4 +27,4 @@ class Ganancia (models.Model):
     ganancia = models.CharField(max_length=30)
 
     def __str__(self):
-        return f'{self.precio_x_día} - {self.costo_mant} - {self.costo_mant} - {self.costo_limpieza} - {self.ganancia}'
+        return f'{self.precio_x_dia} - {self.costo_mant} - {self.costo_mant} - {self.costo_limpieza} - {self.ganancia}'
