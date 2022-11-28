@@ -1,0 +1,26 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+    <h1> Lista de inquilinos actualizada:</h1>
+    
+    
+    {% for inquilino in inquilinos %}
+        <li>
+            {{inquilino}}
+        </li>   
+        <div>
+            <form action="{% url 'borrar_inquilino' inquilino.id %}" method="POST">{% csrf_token %}
+                <button type = "submit">Eliminar</button>
+            </form>
+            <button>
+                <a href="{% url 'editarInquilino' inquilino.id  %}">Editar</a>
+            </button>
+        </div>
+        
+    {% endfor %}
+    
+{% endblock ContenidoQueCambia %}

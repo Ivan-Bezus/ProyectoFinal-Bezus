@@ -3,12 +3,12 @@ from django.db import models
 # Create your models here.
 
 class Depto (models.Model):
-    cobro_x_día = models.CharField(max_length=20)
+   
     fecha_entrada = models.DateField(max_length=30) 
     fecha_salida = models.DateField(max_length=30)
     
     def __str__(self):
-        return f'{self.fecha_entrada} - {self.fecha_salida} - {self.cobro_x_día}'
+        return f'{self.fecha_entrada} - {self.fecha_salida}'
 
 class Inquilino (models.Model):
     nombre = models.CharField(max_length=60)

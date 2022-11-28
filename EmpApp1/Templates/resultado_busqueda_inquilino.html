@@ -1,0 +1,10 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+    <p>El inquilino {{apellido}} tiene el correo: {{inquilino.email}} </p>
+    
+        
+{% endblock ContenidoQueCambia %}

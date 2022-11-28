@@ -1,0 +1,18 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+    <h1> Cargar Formulario del inquilino</h1>
+    
+    <form action="{% url 'buscar' %}" method="GET">{% csrf_token %}
+        
+        <p>Ingrese el apellido del inquilino que busca: <input type="text" name="apellido"></p>
+
+              
+        <input type="submit" value="Buscar Inquilino"/>
+    </form>
+    
+{% endblock ContenidoQueCambia %}

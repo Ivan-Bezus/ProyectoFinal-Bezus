@@ -1,0 +1,26 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+    <h1> Lista de inquilinos actualizada:</h1>
+    
+    
+    {% for inquilino in inquilinos %}
+        <li>
+            <a href="{% url 'inquilino-detalle' inquilinos.id %}">{{inquilinos}}</a>
+         </li>  
+         <div>
+            <button>
+                <a href="{% url 'inquilino-delete' inquilinos.id %}">Editar</a>
+            </button>
+            <button>
+                <a href="{% url 'inquilino-actualizar' inquilinos.id %}">Editar</a>
+            </button>
+         </div> 
+                
+    {% endfor %}
+    
+{% endblock ContenidoQueCambia %}

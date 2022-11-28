@@ -1,0 +1,17 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+    <h1> Editar Formulario Inquilino</h1>
+    
+    <form action="{% url 'editar_inquilino' id %}" method="POST">{% csrf_token %}
+        
+        {{formInqui.as_p}}
+
+        <input type="submit" value="Actualizar"/>
+    
+    </form>
+    
+{% endblock ContenidoQueCambia %}

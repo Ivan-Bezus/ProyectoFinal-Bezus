@@ -7,13 +7,12 @@
 
     <h1> Cargar Formulario Departamento</h1>
     
-    <form action="{% url 'formulario_depto' %}" method="POST">{% csrf_token %}
+    <form action="{% url 'inquilino-formulario' %}" method="POST">{% csrf_token %}
         
-        {{formDepto.as_p}}
+        {{form.as_p}}
 
         <input type="submit" value="Enviar"/>
     
     </form>
     
 {% endblock ContenidoQueCambia %}
-    
