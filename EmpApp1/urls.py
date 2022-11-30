@@ -1,12 +1,34 @@
-
-from EmpApp1.views import InquilinoList, InquilinoDetail, InquilinoCreate, InquilinoUpdate, InquilinoDelete
-from EmpApp1.views import editar_inquilino, borrar_inquilino
 from django.urls import path
-from EmpApp1.views import inicio, depto, inquilino, ganancias, formulario_depto, reserva_depto, formulario_ganancia, formulario_inquilino, registro_ganancia, registro_inquilino
-from EmpApp1.views import busqueda_inquilino, buscar
+
+from EmpApp1.views import(
+InquilinoList,
+InquilinoDetail,
+InquilinoCreate, 
+InquilinoUpdate,
+InquilinoDelete,
+inicio,
+depto,
+inquilino,
+ganancias,
+formulario_depto,
+reserva_depto,
+formulario_ganancia,
+formulario_inquilino,
+registro_ganancia,
+registro_inquilino,
+busqueda_inquilino,
+buscar,
+editar_inquilino, 
+borrar_inquilino,
+user_login,
+user_register,
+user_edit
+)
+
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('', inicio,),
+    path('', inicio, name= "Inicio"),
 
     path('depto/', depto, name="depto"),
     path('inquilino/', inquilino, name="inquilino"),
@@ -33,6 +55,12 @@ urlpatterns = [
     path('inquilino-formulario/', InquilinoCreate.as_view() , name="inquilino-formulario"),
     path('inquilino-actualizar/<pk>', InquilinoUpdate.as_view() , name="inquilino-actualizar"),
     path('inquilino-delete/<pk>', InquilinoDelete.as_view() , name="inquilino-delete"),
+
+    path('user-login/', user_login, name="user-login"),
+    path('user-register/', user_register, name="user-register"),
+    path('user-logout/', LogoutView.as_view(template_name = "user_logout.html") , name="user-logout"),
+    path('user-edit/', user_edit , name="user-edit"),
+
 
     
 

@@ -1,0 +1,19 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+    <h1> Editar datos de usuario</h1>
+    <!-- If I dont define the url on the form, when click on "Actualizar" its send this form is sent with the POST method to the url where the previous url is located-->
+    <form method="POST">{% csrf_token %}
+        
+        {{Miform.as_p}}
+
+        {{mensaje}}
+
+        <input type="submit" value="Actualizar"/>
+    
+    </form>
+    
+{% endblock ContenidoQueCambia %}

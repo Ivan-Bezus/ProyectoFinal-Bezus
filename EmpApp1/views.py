@@ -3,21 +3,30 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from .models import Depto, Inquilino, Ganancia
-from .forms import Formulario_depto, Formulario_ganancia, Formulario_inquilino
+from .models import Avatar, Depto, Inquilino, Ganancia
+from .forms import Formulario_depto, Formulario_ganancia, Formulario_inquilino, UserEditForm, UsuarioRegisterForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
 def inicio (request):
-   return render(request, "inicio.html") 
+
+    avatar = Avatar.objects.get(user = request.user)
+    return render(request, "inicio.html", {"url": avatar.imagen.url}) 
    
 def depto (request):
     return render(request, "depto.html") 
 
+@login_required
 def inquilino (request):
     return render(request, "inquilino.html") 
 
-    
+@staff_member_required(login_url= '/emp-app1/user-login') 
 def ganancias (request):
     return render(request, "ganancias.html") 
 
@@ -123,6 +132,7 @@ def borrar_inquilino(request, id):
         inquilinos = Inquilino.objects.all()
 
         return render(request, "lista_inquilino.html", {"inquilinos":inquilinos})
+    #Revisar: Devuelve none porque no entra en el if 
 
 
 # Editar un dato de la base de datos (CRUD editar)
@@ -132,12 +142,12 @@ def editar_inquilino (request,id):
 
     if request.method == 'POST':
 
-        formInqui =  Formulario_inquilino(request.POST)      
+        formInqui = Formulario_inquilino(request.POST)      
 
         if formInqui.is_valid():
 
             data= formInqui.cleaned_data
-
+            #Potencial problema "inquilino" ---revisar
             inquilino.nombre = data['nombre'], 
             inquilino.apellido = data['apellido'], 
             inquilino.dni = data['dni'], 
@@ -147,6 +157,7 @@ def editar_inquilino (request,id):
             inquilino.save()
         
             return redirect ('/inquilino/')
+        #Revisar: Devuelve "none" porque no entra en el if (VER SOLUCION EN FUNCION USER_EDIT: Agregar return cuando no entra en el IF)
 
     else:
         formInqui = Formulario_inquilino(initial={
@@ -156,13 +167,13 @@ def editar_inquilino (request,id):
             'telefono' : inquilino.telefono, 
             'email' : inquilino.email    
         })
-    
+       
         return render (request, "editar_inquilino.html", {"formInqui":formInqui, "id":inquilino.id})  
-
+        #(VER SOLUCION EN FUNCION USER_EDIT: Agregar return cuando no entra en el IF) ADEMAS FIJARSE EL inquilino.id
     
-#Crar, leer, detallar, actualizar y eliminar con VISTAS BASADAS EN CLASES (Funciones de Djaclass)
-
-class InquilinoList(ListView):
+#CRUD INQUILINO: Crar, leer, detallar, actualizar y eliminar con VISTAS BASADAS EN CLASES (Funciones de Djaclass)
+# Se agrega un "MIXIN" para dotar de funciones a las clases, en el caso de inquilino: Autenticacion de usuario"
+class InquilinoList(LoginRequiredMixin,ListView):
 
     model = Inquilino
     template_name = 'inquilino_list.html'
@@ -190,3 +201,92 @@ class InquilinoDelete(DeleteView):
     template_name = 'inquilino_delete.html'
     success_url = '/inquilino-lista/'
 
+
+#LOGIN on the page
+
+def user_login(request):
+    
+    if request.method == 'POST':
+   
+        Miform = AuthenticationForm(request, data = request.POST)
+
+        if Miform.is_valid():
+            data= Miform.cleaned_data
+
+            usr = data ["username"]
+            psw = data ["password"]
+
+            user = authenticate(username = usr , password = psw) #Validacion de usuario, si no matchea alguno devuelve NONE.
+
+            if user: 
+                login(request, user)
+                return render (request, "inicio.html", {"mensaje": f'Bienvenido {user} a la plataforma de la gestión de alquiler transitorio'})
+            
+            else: 
+                return render (request, "inicio.html", {"mensaje": f'Error, datos incorrectos'})
+        
+        return render (request, "inicio.html", {"mensaje": f'Error, formulario invalido'})            
+        
+        
+    else:
+        Miform = AuthenticationForm()
+    
+    return render (request, "user_login.html", {"Miform": Miform})
+
+#Register a new user
+
+def user_register(request):
+    if request.method == 'POST':
+
+        #Miform = UserCreationForm(request.POST) Se puede hacer así o crear un nuevo formulario que herede sus atributos y seleccionar la informacion que quiero mostrar
+        # Ver como sigue
+        Miform = UsuarioRegisterForm(request.POST)
+
+        if Miform.is_valid():
+            data= Miform.cleaned_data
+            usr = Miform.cleaned_data["username"]
+
+            Miform.save()
+        
+            return render (request, "inicio.html", {"mensaje": f'Usuario {usr} creado con éxito.'}) 
+        
+        else:
+            return render (request, "inicio.html", {"mensaje": f'Error al crear el usuario.'}) 
+
+    else:
+        Miform = UsuarioRegisterForm()
+    
+    return render (request, "user_register.html", {"Miform":Miform}) 
+
+#Edition of registred users: create a new form "UsedEditForm" in "forms.py" with an associated model
+
+def user_edit(request):
+
+    usr = request.user
+
+    if request.method == 'POST':
+
+        Miform =  UserEditForm(request.POST)      
+
+        if Miform.is_valid():
+
+            data= Miform.cleaned_data
+
+            usr.first_name = data['first_name'], 
+            usr.last_name = data['last_name'], 
+            usr.email = data['email'], 
+            usr.set_password(data['password1']) #Para modificar la contraseña   
+                                  
+            usr.save()
+        
+            return render (request, "inicio.html", {"mensaje":'Datos actualizados con éxito.'}) 
+        
+        #Revisar Devuelve none porque no entra en el if "Miform = User..." (solucionado)
+        return render (request, "user_edit.html", {"mensaje" : "Las contraseñas no coinciden"})  
+
+    else:
+        #Hay problemas en esta instancia request.user REVISAR) Info en Clase 24 min 1:00:00 aprox  
+        Miform = UserEditForm (instance = request.user)
+        
+        
+        return render (request, "user_edit.html", {"Miform" : Miform})  

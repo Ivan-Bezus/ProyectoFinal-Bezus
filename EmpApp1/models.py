@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,3 +29,11 @@ class Ganancia (models.Model):
 
     def __str__(self):
         return f'{self.precio_x_dia} - {self.costo_mant} - {self.costo_mant} - {self.costo_limpieza} - {self.ganancia}'
+
+
+class Avatar (models.Model):
+
+    #ForeignKey: atributo del modelo models que tiene un vinculo desde un modelo hacia otro modelo -
+    # " : Puedo vincular un registro del modelo Avatar con un registro del modelo que yo le diga en el atributo (en este caso USER)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatares', null=True, blank= True)

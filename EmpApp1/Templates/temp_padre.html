@@ -26,7 +26,14 @@
                 <a class="navbar-brand" href="{% url 'depto'%}">Depto</a>
                 <a class="navbar-brand" href="{% url 'inquilino'%}">Inquilino</a>
                 <a class="navbar-brand" href="{% url 'ganancias'%}">Ganancias</a>
-                <a class="btn btn-primary" href="#signup">Iniciar</a>
+                <!-- To Know is someone logged in on the app and he can logged out -->
+                {% if user.is_authenticated  %}
+                <p>Bienvenidx {{user.username}}</p>
+                <a class="btn btn-primary" href="{% url 'user-logout'%}">Salir</a>  
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'user-login'%}">Iniciar</a>
+                {% endif %} 
+                <!-- To Know is someone logged in on the app and he can logged out -->
             </div>
         </nav>
         <!-- Masthead-->
