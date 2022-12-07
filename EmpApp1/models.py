@@ -30,7 +30,7 @@ class Booking (models.Model):
     date_registered = models.DateField(auto_now_add=True)
     
     def __str__(self):
-        return f'{self.person} - {self.date_in} - {self.date_out}'
+        return f'{self.person} del {self.date_in} al {self.date_out}'
 
     class Meta:
         db_table = 'Booking'
@@ -48,7 +48,7 @@ class Gain (models.Model):
     gain = models.IntegerField(verbose_name= 'Ganancia')
 
     def __str__(self):
-        return f'ID: {self.booking} '
+        return f'Reserva: {self.booking} '
 
     class Meta:
         db_table = 'Gain'

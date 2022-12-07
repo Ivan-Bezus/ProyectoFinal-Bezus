@@ -1,11 +1,6 @@
 from django.urls import path
 
 from EmpApp1.views import(
-# InquilinoList,
-# InquilinoDetail,
-# InquilinoCreate, 
-# InquilinoUpdate,
-# InquilinoDelete,
 inicio,
 about_me,
 contact_me,
@@ -27,14 +22,6 @@ gain_read,
 gain_detail,
 gain_update,
 gain_delete,
-# formulario_ganancia,
-# formulario_inquilino,
-# registro_ganancia,
-# registro_inquilino,
-# busqueda_inquilino,
-# buscar,
-# editar_inquilino, 
-# borrar_inquilino,
 user_login,
 user_register,
 user_edit
