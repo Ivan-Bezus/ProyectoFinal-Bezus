@@ -1,0 +1,19 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+    <h1>Vista de detalle del inquilino:</h1>
+    
+    Nombre del inquilino: {{person.first_name}} {{person.last_name}}<br>
+
+    ID: {{person.id}} <br>
+
+    Nº de telefono: {{person.tel}}. <br>
+
+    Correo electrónico: {{person.email}} <br>
+
+    <a href="{% url 'person-read' %}">Regresar</a>
+{% endblock ContenidoQueCambia %}

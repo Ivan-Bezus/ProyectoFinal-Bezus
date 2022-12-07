@@ -23,14 +23,16 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#!">Inicio</a>
-                <a class="navbar-brand" href="{% url 'depto'%}">Depto</a>
-                <a class="navbar-brand" href="{% url 'inquilino'%}">Inquilino</a>
-                <a class="navbar-brand" href="{% url 'ganancias'%}">Ganancias</a>
+                <a class="navbar-brand" href="{% url 'person-main'%}">Inquilinos</a>
+                <a class="navbar-brand" href="{% url 'booking-main'%}">Reservas</a>
+                <a class="navbar-brand" href="{% url 'gain-main'%}">Ganancias</a>
                 <!-- To Know is someone logged in on the app and he can logged out -->
                 {% if user.is_authenticated  %}
                 <p>Bienvenidx {{user.username}}</p>
+                <a class="btn btn-primary" href="{% url 'user-edit'%}">Editar Usuario</a>
                 <a class="btn btn-primary" href="{% url 'user-logout'%}">Salir</a>  
                 {% else %}
+                <a class="btn btn-primary" href="{% url 'user-register'%}">Registrarse</a>
                 <a class="btn btn-primary" href="{% url 'user-login'%}">Iniciar</a>
                 {% endif %} 
                 <!-- To Know is someone logged in on the app and he can logged out -->
@@ -43,7 +45,7 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">¡Bienvenidx a la gestión de Alquiler temporario del depto!</h1>
+                            <h1 class="mb-1">¡Bienvenidx a la gestión de Alquiler temporario del depto!</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -62,7 +64,6 @@
         {% block ContenidoQueCambia %}
             <!--El contenido de esta sección va a cambiar según lo que le cargue a los html "hijos" -->
         {% endblock ContenidoQueCambia %}
-            
         
         <!-- Footer-->
         <footer class="footer bg-light">
@@ -70,28 +71,14 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="{% url 'about-me'%}">About me</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="{% url 'contact-me' %}">Contact me</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
-                            </li>
-                        </ul>
+                        
                     </div>
                 </div>
             </div>

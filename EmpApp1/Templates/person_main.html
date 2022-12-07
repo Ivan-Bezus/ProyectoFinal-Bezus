@@ -1,0 +1,14 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+<h1>Página principal de la sección de inquilinos</h1>
+
+<a href="{% url 'person-create' %}">Agregar inquilino</a> <br>
+
+
+<a href="{% url 'person-read' %}">Ver registro de inquilino</a> <br>
+
+{% endblock ContenidoQueCambia %}

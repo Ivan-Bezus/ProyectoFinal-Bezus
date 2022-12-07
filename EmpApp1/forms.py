@@ -3,24 +3,28 @@ from django import forms
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User
 
-class Formulario_depto(forms.Form):
-    
-    fecha_entrada = forms.DateField() 
-    fecha_salida = forms.DateField()
+class Form_person(forms.Form):
 
-class Formulario_inquilino(forms.Form):
-    nombre = forms.CharField(max_length=60)
-    apellido = forms.CharField(max_length=60)
+    first_name = forms.CharField(max_length=60)
+    last_name = forms.CharField(max_length=60)
     dni = forms.CharField(max_length=20)
-    telefono = forms.CharField(max_length=30)
+    tel = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=60)
 
-class Formulario_ganancia(forms.Form):
-    precio_x_dia = forms.CharField(max_length=30)
-    costo_gestion = forms.CharField(max_length= 30)
-    costo_mant = forms.CharField(max_length=30)
-    costo_limpieza = forms.CharField(max_length=30)
-    ganancia = forms.CharField(max_length=30)
+class Form_booking(forms.Form):
+    
+    person = forms.CharField(max_length=30)
+    date_in = forms.DateField() 
+    date_out = forms.DateField()
+
+class Form_gain(forms.Form):
+
+    #reserv = forms.CharField(max_length=30)
+    daily_price = forms.CharField(max_length=30)
+    manag_cost = forms.CharField(max_length= 30)
+    maint_cost = forms.CharField(max_length=30)
+    clean_cost = forms.CharField(max_length=30)
+    gain = forms.CharField(max_length=30)
 
 class UserEditForm(UserChangeForm):
 

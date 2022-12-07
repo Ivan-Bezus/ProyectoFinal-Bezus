@@ -1,0 +1,25 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+    <h1> Lista de reservas:</h1>
+    
+    <!-- Reever clase 22, para solucionar el problema de la impresion del nombre del inquilino -->
+    {% for g in gain %}
+        <li>
+            <a href="{% url 'gain-detail' g.id %}">{{g}}</a>
+         </li>  
+         <div>
+            <button>
+                <a href="{% url 'gain-update' g.id %}">Editar</a>
+            </button>
+            <button>
+                <a href="{% url 'gain-delete' g.id %}">Eliminar</a>
+            </button>
+         </div> 
+                
+    {% endfor %}
+    
+{% endblock ContenidoQueCambia %}

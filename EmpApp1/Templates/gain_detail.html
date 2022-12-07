@@ -1,0 +1,19 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+    <h1>Vista de detalle de la ganancia solicitada:</h1>
+    
+    La reserva nº {{gain.booking}} ha generado una ganancia de u$s {{gain.gain}}. <br>
+
+    Detalle: <br> 
+    · Costo diario de alquiler: {{gain.daily_price}}. <br>
+    · Costo de gestión: {{gain.manag_cost}} <br>
+    · Costo de mantenimiento: {{gain.maint_cost}} <br>
+    · Costo de limpieza: {{gain.clean_cost}} <br>
+    <br> 
+    <a href="{% url 'gain-read' %}">Regresar</a>
+    
+{% endblock ContenidoQueCambia %}

@@ -1,0 +1,19 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+    <h1>Vista de detalle de la reserva:</h1>
+    
+    Inquilino: <h4>{{booking.person}}</h4><br>
+
+    Ha reservado el departamento desde <h3>{{booking.date_in}}</h3> hasta <h3>{{booking.date_out}}</h3> <br>
+
+    La fecha en la que ha realizado la reserva fue el {{booking.date_registered}}.
+
+    <br>
+    
+    <a href="{% url 'booking-read' %}">Regresar</a>
+   
+{% endblock ContenidoQueCambia %}

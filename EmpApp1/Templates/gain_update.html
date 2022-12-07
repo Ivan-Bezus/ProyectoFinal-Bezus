@@ -2,16 +2,15 @@
 
 {% load static %}
 
-
 {% block ContenidoQueCambia %}
 
-    <h1> Cargar Formulario Departamento</h1>
+    <h1> Actualizar registro de ganancia</h1>
     
-    <form action="{% url 'inquilino-formulario' %}" method="POST">{% csrf_token %}
+    <form action="{% url 'gain-update' gain.id %}" method="POST">{% csrf_token %}
         
         {{form.as_p}}
 
-        <input type="submit" value="Enviar"/>
+        <input type="submit" value="Actualizar"/>
     
     </form>
     

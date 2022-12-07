@@ -1,0 +1,17 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+     
+    <form method="POST">{% csrf_token %}
+        
+        <h1>¿Está seguro que desea eliminar el registro de ganancia</h1> <br>
+
+        <button type="submit">Confirmar</button>  <br>
+        <button><a href="{% url 'gain-read' %}">Cancelar</a></button>
+    
+    </form>
+    
+{% endblock ContenidoQueCambia %}

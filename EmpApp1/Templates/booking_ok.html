@@ -1,0 +1,12 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+<h1>REGISTRO DE RESERVA REALIZADO CON EXITO.</h1>
+
+<a href="{% url booking-main %}">Volver a Reservas</a>
+
+{% endblock ContenidoQueCambia %}

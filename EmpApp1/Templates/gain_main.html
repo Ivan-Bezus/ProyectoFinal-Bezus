@@ -1,0 +1,14 @@
+{% extends 'temp_padre.html' %}
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+<h1>Página principal de la sección ganancias</h1>
+
+<a href="{% url 'gain-create' %}">Registrar ganancia</a> <br>
+
+
+<a href="{% url 'gain-read' %}">Ver registro de ganancias</a> <br>
+
+{% endblock ContenidoQueCambia %}

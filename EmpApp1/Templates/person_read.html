@@ -2,25 +2,24 @@
 
 {% load static %}
 
-
 {% block ContenidoQueCambia %}
 
-    <h1> Lista de inquilinos actualizada:</h1>
+    <h1> Lista de inquilinos:</h1>
     
     <!-- Reever clase 22, para solucionar el problema de la impresion del nombre del inquilino -->
-    {% for inquilino in inquilinos %}
+    {% for p in person %}
         <li>
-            <a href="{% url 'inquilino-detalle' inquilino.id %}">{{inquilinos}}</a>
-         </li>  
-         <div>
+            <a href="{% url 'person-detail' p.id %}">{{p}}</a>
+        </li>  
+        <div>
             <button>
-                <a href="{% url 'inquilino-delete' inquilino.id %}">Editar</a>
+                <a href="{% url 'person-update' p.id %}">Editar</a>
             </button>
             <button>
-                <a href="{% url 'inquilino-actualizar' inquilino.id %}">Editar</a>
+                <a href="{% url 'person-delete' p.id %}">Eliminar</a>
             </button>
-         </div> 
+        </div> 
                 
     {% endfor %}
-    
+
 {% endblock ContenidoQueCambia %}

@@ -2,12 +2,11 @@
 
 {% load static %}
 
-
 {% block ContenidoQueCambia %}
 
-    <h1> Actualizar Formulario Departamento</h1>
+    <h1> Actualizar registro de reserva</h1>
     
-    <form action="{% url 'inquilino-formulario' %}" method="POST">{% csrf_token %}
+    <form action="{% url 'booking-update' booking.id %}" method="POST">{% csrf_token %}
         
         {{form.as_p}}
 

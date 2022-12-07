@@ -1,0 +1,15 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+
+{% block ContenidoQueCambia %}
+
+<h1>Página de reservas</h1>
+
+<a href="{% url 'booking-create' %}">Agregar reservación</a> <br>
+
+
+<a href="{% url 'booking-read' %}">Ver reservas</a> <br>
+
+{% endblock ContenidoQueCambia %}

@@ -3,33 +3,58 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Depto (models.Model):
-   
-    fecha_entrada = models.DateField(max_length=30) 
-    fecha_salida = models.DateField(max_length=30)
+class Person (models.Model):
+
+    
+    first_name = models.CharField(max_length=30, verbose_name= 'Nombre')
+    last_name = models.CharField(max_length=30, verbose_name= 'Apellido')
+    dni = models.CharField(max_length=10, verbose_name='DNI')
+    tel = models.CharField(max_length=30, verbose_name= 'Telefono')
+    email = models.EmailField(max_length=50, verbose_name= 'Email')
     
     def __str__(self):
-        return f'{self.fecha_entrada} - {self.fecha_salida}'
+        return f'{self.first_name} {self.last_name}'
 
-class Inquilino (models.Model):
-    nombre = models.CharField(max_length=60)
-    apellido = models.CharField(max_length=60)
-    dni = models.CharField(max_length=20)
-    telefono = models.CharField(max_length=30)
-    email = models.EmailField(max_length=60)
+    class Meta:
+        db_table = 'Person'
+        verbose_name = 'Inquilino'
+        verbose_name_plural = 'Inquilinos'
+        ordering = ['last_name']
+
+class Booking (models.Model):
+
+    #Relacion 1:N - One Person must register for each reservation - blank or null fields are not accepted 
+    person = models.ForeignKey(Person,on_delete=models.CASCADE, blank= False, null= False, verbose_name= 'Inquilino')
+    date_in = models.DateField(max_length=30, verbose_name= 'Fecha de entrada') 
+    date_out = models.DateField(max_length=30, verbose_name= 'Fecha de salida')
+    date_registered = models.DateField(auto_now_add=True)
+    
     def __str__(self):
-        return f'{self.nombre} - {self.apellido} - {self.dni} - {self.email}'
+        return f'{self.person} - {self.date_in} - {self.date_out}'
 
-class Ganancia (models.Model):
-    precio_x_dia = models.CharField(max_length=30)
-    costo_gestion = models.CharField(max_length= 30)
-    costo_mant = models.CharField(max_length=30)
-    costo_limpieza = models.CharField(max_length=30)
-    ganancia = models.CharField(max_length=30)
+    class Meta:
+        db_table = 'Booking'
+        verbose_name = 'Reserva'
+        verbose_name_plural = 'Reservas'
+        ordering = ['date_registered']
+
+class Gain (models.Model):
+
+    booking= models.ForeignKey(Booking, on_delete= models.CASCADE)
+    daily_price = models.IntegerField(verbose_name= 'Precio diario')
+    manag_cost = models.IntegerField(verbose_name= 'Costo de gestion')
+    maint_cost = models.IntegerField(verbose_name= 'Costo de mantenimiento')
+    clean_cost = models.IntegerField(verbose_name= 'Costo de limpieza')
+    gain = models.IntegerField(verbose_name= 'Ganancia')
 
     def __str__(self):
-        return f'{self.precio_x_dia} - {self.costo_mant} - {self.costo_mant} - {self.costo_limpieza} - {self.ganancia}'
+        return f'ID: {self.booking} '
 
+    class Meta:
+        db_table = 'Gain'
+        verbose_name = 'Ganancia'
+        verbose_name_plural = 'Ganancias'
+        ordering = ['id']
 
 class Avatar (models.Model):
 

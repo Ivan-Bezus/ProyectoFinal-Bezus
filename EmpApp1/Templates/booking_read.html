@@ -1,0 +1,25 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+    <h1> Lista de reservas:</h1>
+    
+    <!-- Reever clase 22, para solucionar el problema de la impresion del nombre del inquilino -->
+    {% for book in booking %}
+        <li>
+            <a href="{% url 'booking-detail' book.id %}">{{book}}</a>
+         </li>  
+         <div>
+            <button>
+                <a href="{% url 'booking-update' book.id %}">Editar</a>
+            </button>
+            <button>
+                <a href="{% url 'booking-delete' book.id %}">Eliminar</a>
+            </button>
+         </div> 
+                
+    {% endfor %}
+    
+{% endblock ContenidoQueCambia %}
