@@ -16,6 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from EmpApp1.booking_functions.availability import check_availability
 from django import forms
+from django.core.exceptions import ValidationError
 
 
 # Create your views here.
@@ -99,6 +100,18 @@ class booking_create (LoginRequiredMixin,CreateView):
     template_name = 'booking_create.html'
     fields = ["person", "date_in", "date_out"]
     success_url = '/emp-app1/booking-read/'
+
+    def form_valid(self,form):
+        cleaned_data = form.cleaned_data
+        date_in_c = cleaned_data.get("date_in")
+        date_out_c = cleaned_data.get("date_out")
+
+        #Actualmente no estoy pudiendo ingresar a la los datos cargados en el formulario para compararlos con con los de la base de datos y saber si hay disponibilidad.
+        if check_availability(date_in_c , date_out_c):
+            cleaned_data.save()
+            return HttpResponse ("Registro realizado con exito.")
+        else:
+            raise ValidationError ("No hay disponibilidad en las fechas indicadas.Vuelva atrás e intente nuevamente")
            
 
 # 2.2 CRUD: READ booking
@@ -151,6 +164,7 @@ class gain_create (LoginRequiredMixin,CreateView):
     fields = ['booking','daily_price', 'manag_cost', 'maint_cost', 'clean_cost', 'gain']
     success_url = '/emp-app1/gain-read/'
 
+    
 # 3.2 CRUD: READ gain
 #-------------------------------------------------------------
 class gain_read (LoginRequiredMixin,ListView): 

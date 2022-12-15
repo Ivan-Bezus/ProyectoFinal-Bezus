@@ -10,4 +10,4 @@ def check_availability(date_in, date_out):
             avail_list.append(True)
         else:
             avail_list.append(False)
-    return all(avail_list)
+    return all(avail_list) #devuelve True si todos son True.
