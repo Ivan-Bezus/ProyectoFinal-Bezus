@@ -1,4 +1,5 @@
 
+from django.http import HttpResponse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -12,6 +13,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from EmpApp1.booking_functions.availability import check_availability
+from django import forms
 
 
 # Create your views here.
@@ -95,6 +99,7 @@ class booking_create (LoginRequiredMixin,CreateView):
     template_name = 'booking_create.html'
     fields = ["person", "date_in", "date_out"]
     success_url = '/emp-app1/booking-read/'
+           
 
 # 2.2 CRUD: READ booking
 #-------------------------------------------------------------

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'EmpApp1',
+    'EmpApp1.booking_functions',
 ]
 
 MIDDLEWARE = [

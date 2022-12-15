@@ -1,7 +1,9 @@
 from dataclasses import fields
+from EmpApp1.models import Booking
 from django import forms
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 class Form_person(forms.Form):
 
@@ -16,6 +18,21 @@ class Form_booking(forms.Form):
     person = forms.CharField(max_length=30)
     date_in = forms.DateField() 
     date_out = forms.DateField()
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date_in_c = cleaned_data.get("date_in")
+        date_out_c = cleaned_data.get("date_out")
+
+        based_date = Booking.objects.all ()
+        based_date_in = based_date.get("date_in")
+        based_date_out = based_date.get("date_out")
+
+    #Actualmente no estoy pudiendo ingresar a la los datos cargados en el formulario para compararlos con con los de la base de datos y saber si hay disponibilidad.
+        for date in based_date: 
+            if date_in_c > based_date_out and date_out_c < based_date_in:
+                raise ValidationError ("No hay disponibilidad en las fechas indicadas.")
+            return cleaned_data
 
 class Form_gain(forms.Form):
 
