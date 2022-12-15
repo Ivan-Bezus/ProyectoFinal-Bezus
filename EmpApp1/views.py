@@ -102,22 +102,23 @@ class booking_create (LoginRequiredMixin,CreateView):
     fields = ["person", "date_in", "date_out"]
     success_url = '/emp-app1/booking-read/'
 
+#Aun no resuelvo que se cree correctamente el objeto de la clase Booking. 
     def form_valid(self,form):
         cleaned_data = form.cleaned_data
         date_in_c = cleaned_data["date_in"]
         date_out_c = cleaned_data["date_out"]
 
-        #Actualmente no estoy pudiendo ingresar a la los datos cargados en el formulario para compararlos con con los de la base de datos y saber si hay disponibilidad.
+        
         if check_availability(date_in_c , date_out_c):
             booking = Booking.objects.create(
                 person = cleaned_data['person'],
                 date_in = date_in_c,   
                 date_out = date_out_c,
-                date_registered = cleaned_data['date_registered'],
             )
             booking.save()
             
             return HttpResponse ("Registro realizado con exito.")
+
         else:
             raise ValidationError ("No hay disponibilidad en las fechas indicadas.Vuelva atrás e intente nuevamente")
            

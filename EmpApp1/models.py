@@ -27,8 +27,8 @@ class Booking (models.Model):
     person = models.ForeignKey(Person,on_delete=models.CASCADE, blank= False, null= False, verbose_name= 'Inquilino')
     date_in = models.DateField(max_length=30, verbose_name= 'Fecha de entrada') 
     date_out = models.DateField(max_length=30, verbose_name= 'Fecha de salida')
-    date_registered = models.DateField(auto_now_add=True)
-    
+
+
     def __str__(self):
         return f'{self.person} del {self.date_in} al {self.date_out}'
 
@@ -36,7 +36,7 @@ class Booking (models.Model):
         db_table = 'Booking'
         verbose_name = 'Reserva'
         verbose_name_plural = 'Reservas'
-        ordering = ['date_registered']
+        
 
 class Gain (models.Model):
 
