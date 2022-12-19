@@ -8,3 +8,6 @@ La aplicación tiene las funciones de registro de los inquilinos que alquilarán
 Se podrán crear usuarios de control y por el momento solo habrán dos usuarios "stuff", mi amigo (quien recibirá y registrará a los inquilinos) y yo.
 
 
+###Video explicativo:
+https://www.youtube.com/watch?v=1Wc01Th9VyA&ab_channel=IvanBezus
+
