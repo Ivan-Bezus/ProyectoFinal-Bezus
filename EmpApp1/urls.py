@@ -6,6 +6,8 @@ about_me,
 contact_me,
 booking_main,
 booking_create,
+booking_ok,
+booking_fail,
 booking_read,
 booking_update,
 booking_detail,
@@ -50,6 +52,9 @@ urlpatterns = [
     path('booking-detail/<pk>',booking_detail.as_view() , name="booking-detail"),
     path('booking-update/<pk>',booking_update.as_view() , name="booking-update"),
     path('booking-delete/<pk>',booking_delete.as_view(), name="booking-delete"),
+    path('booking_ok',booking_ok, name= "booking_ok"),
+    path('booking_fail',booking_fail, name= "booking_fail"),
+    
 
     #URLS GAIN
     path('gain-main/', gain_main, name="gain-main"),
@@ -63,19 +68,7 @@ urlpatterns = [
     path('user-login/', user_login, name="user-login"),
     path('user-register/', user_register, name="user-register"),
     path('user-logout/', LogoutView.as_view(template_name = "user_logout.html") , name="user-logout"),
-    path('user-edit/', user_edit , name="user-edit"),
-
-
-    #URLS FUERA DE USO:
-    # path('formulario_ganancia/', formulario_ganancia , name="formulario_ganancia"),
-    # path('lista_ganancia/', registro_ganancia , name="lista_ganancia"),
-    # path('formulario_inquilido/',formulario_inquilino , name="formulario_inquilino"),
-    # path('lista_inquilino/', registro_inquilino , name="lista_inquilino"),
-    # path('busqueda_inquilino/', busqueda_inquilino , name="busqueda_inquilino"),
-    # path('buscar/', buscar , name="buscar"),
-    # path('borrar_inquilino/<int:id>', borrar_inquilino , name="borrar_inquilino"),
-    # path('editarInquilino/<int:id>', editar_inquilino , name="editarInquilino"),
-
+    path('user-edit/', user_edit , name="user-edit")
 
 
 ]

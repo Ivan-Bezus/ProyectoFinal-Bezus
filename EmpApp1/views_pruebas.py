@@ -297,3 +297,14 @@ def user_edit(request):
         
         
         return render (request, "user_edit.html", {"Miform" : Miform})  
+
+
+            #URLS FUERA DE USO:
+    # path('formulario_ganancia/', formulario_ganancia , name="formulario_ganancia"),
+    # path('lista_ganancia/', registro_ganancia , name="lista_ganancia"),
+    # path('formulario_inquilido/',formulario_inquilino , name="formulario_inquilino"),
+    # path('lista_inquilino/', registro_inquilino , name="lista_inquilino"),
+    # path('busqueda_inquilino/', busqueda_inquilino , name="busqueda_inquilino"),
+    # path('buscar/', buscar , name="buscar"),
+    # path('borrar_inquilino/<int:id>', borrar_inquilino , name="borrar_inquilino"),
+    # path('editarInquilino/<int:id>', editar_inquilino , name="editarInquilino"),

@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 
 from .models import Avatar, Booking, Person, Gain
@@ -100,10 +100,11 @@ class booking_create (LoginRequiredMixin,CreateView):
     model = Booking
     template_name = 'booking_create.html'
     fields = ["person", "date_in", "date_out"]
-    success_url = '/emp-app1/booking-read/'
+    # success_url = '/emp-app1/booking-read/'
 
-#Aun no resuelvo que se cree correctamente el objeto de la clase Booking. 
+    usr=request 
     def form_valid(self,form):
+
         cleaned_data = form.cleaned_data
         date_in_c = cleaned_data["date_in"]
         date_out_c = cleaned_data["date_out"]
@@ -116,12 +117,18 @@ class booking_create (LoginRequiredMixin,CreateView):
                 date_out = date_out_c,
             )
             booking.save()
-            
-            return HttpResponse ("Registro realizado con exito.")
-
+            # return HttpResponse ("Registro realizado con exito.")
+            return redirect ('/emp-app1/booking_ok', permanent=True)
         else:
-            raise ValidationError ("No hay disponibilidad en las fechas indicadas.Vuelva atrás e intente nuevamente")
-           
+            # return HttpResponse ("No hay disponibilidad en las fechas indicadas.Vuelva atrás e intente nuevamente")
+            return redirect ('/emp-app1/booking_fail',permanent=True)
+
+def booking_ok(request):
+    return render(request, "booking_ok.html",)
+
+def booking_fail (request):
+    return render(request, "booking_fail.html",)
+
 
 # 2.2 CRUD: READ booking
 #-------------------------------------------------------------
@@ -200,7 +207,7 @@ class gain_update(UpdateView):
     success_url = '/emp-app1/gain-read/'
     context_object_name = 'gain'
 
- #2.5 CRUD: DELETE booking
+#2.5 CRUD: DELETE booking
 #-------------------------------------------------------------
 class gain_delete(DeleteView):
     model = Gain
