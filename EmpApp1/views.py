@@ -102,7 +102,6 @@ class booking_create (LoginRequiredMixin,CreateView):
     fields = ["person", "date_in", "date_out"]
     # success_url = '/emp-app1/booking-read/'
 
-    usr=request 
     def form_valid(self,form):
 
         cleaned_data = form.cleaned_data
@@ -288,7 +287,7 @@ def user_edit(request):
             usr.first_name = data['first_name'], 
             usr.last_name = data['last_name'], 
             usr.email = data['email'], 
-            usr.set_password(data['password1']) #Para modificar la contraseña   
+            usr.set_password(data['password1']) #Para modificar la contraseña: .set_password
                                   
             usr.save()
         

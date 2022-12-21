@@ -124,7 +124,7 @@ def booking_read (request):
 
 #     inquilino = Inquilino.objects.get(apellido = buscar_apellido)
     
-#     return render(request,'resultado_busqueda_inquilino.html', {'nombre': inquilino, 'apellido': buscar_apellido})
+#     return render(request,'resultado_busqueda_inquilino.html', {'nombre': inquilino, 'apellido': buscar_apellido, 'email': email})
 
 
 # # Eliminar un dato de la base de datos (CRUD Borrar)
@@ -163,7 +163,7 @@ def booking_read (request):
                             
 #             inquilino.save()
         
-#             return redirect ('/inquilino/')
+#          return redirect ('/inquilino/')
 #         #Revisar: Devuelve "none" porque no entra en el if (VER SOLUCION EN FUNCION USER_EDIT: Agregar return cuando no entra en el IF)
 
 #     else:
@@ -175,7 +175,7 @@ def booking_read (request):
 #             'email' : inquilino.email    
 #         })
        
-#         return render (request, "editar_inquilino.html", {"formInqui":formInqui, "id":inquilino.id})  
+#      return render (request, "editar_inquilino.html", {"formInqui":formInqui, "id":inquilino.id})  
 #         #(VER SOLUCION EN FUNCION USER_EDIT: Agregar return cuando no entra en el IF) ADEMAS FIJARSE EL inquilino.id
     
 # #CRUD INQUILINO: Crar, leer, detallar, actualizar y eliminar con VISTAS BASADAS EN CLASES (Funciones de Djaclass)

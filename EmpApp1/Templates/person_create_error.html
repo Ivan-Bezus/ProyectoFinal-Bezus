@@ -1,0 +1,19 @@
+{% extends 'temp_padre.html' %} <!--para heredar del template padre!-->
+
+{% load static %}
+
+{% block ContenidoQueCambia %}
+
+<h1>REGISTRO FALLIDO</h1> <br>
+
+<h2>Debe ingresar un nombre válido.</h2> <br>
+<h3>Referencia:</h3><br>
+# Nombres reales:
+# No incluir números.
+# No incluir caractéres especiales(signos).
+
+<h3>Por favor, vuelva atrás e intente nuevamente con otras fechas.</h3> <br>
+
+<a href="{% url 'person-main' %}">Volver a Registro</a>
+
+{% endblock ContenidoQueCambia %}
